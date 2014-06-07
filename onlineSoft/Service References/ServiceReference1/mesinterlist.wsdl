@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://weblist.com/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://weblist.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://weblist.com/">
+      <s:element name="getfingucode">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="custbarcode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getfingucodeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getfingucodeResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getcpdm">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="barcode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getcpdmResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getcpdmResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getdate">
+        <s:complexType />
+      </s:element>
+      <s:element name="getdateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getdateResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getseekresult">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="strsql" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getseekresultResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getseekresultResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="1" name="errmsg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="getfingucodeSoapIn">
+    <wsdl:part name="parameters" element="tns:getfingucode" />
+  </wsdl:message>
+  <wsdl:message name="getfingucodeSoapOut">
+    <wsdl:part name="parameters" element="tns:getfingucodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="getcpdmSoapIn">
+    <wsdl:part name="parameters" element="tns:getcpdm" />
+  </wsdl:message>
+  <wsdl:message name="getcpdmSoapOut">
+    <wsdl:part name="parameters" element="tns:getcpdmResponse" />
+  </wsdl:message>
+  <wsdl:message name="getdateSoapIn">
+    <wsdl:part name="parameters" element="tns:getdate" />
+  </wsdl:message>
+  <wsdl:message name="getdateSoapOut">
+    <wsdl:part name="parameters" element="tns:getdateResponse" />
+  </wsdl:message>
+  <wsdl:message name="getseekresultSoapIn">
+    <wsdl:part name="parameters" element="tns:getseekresult" />
+  </wsdl:message>
+  <wsdl:message name="getseekresultSoapOut">
+    <wsdl:part name="parameters" element="tns:getseekresultResponse" />
+  </wsdl:message>
+  <wsdl:portType name="mesinterlistSoap">
+    <wsdl:operation name="getfingucode">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取产品代码</wsdl:documentation>
+      <wsdl:input message="tns:getfingucodeSoapIn" />
+      <wsdl:output message="tns:getfingucodeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getcpdm">
+      <wsdl:input message="tns:getcpdmSoapIn" />
+      <wsdl:output message="tns:getcpdmSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getdate">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取系统时间</wsdl:documentation>
+      <wsdl:input message="tns:getdateSoapIn" />
+      <wsdl:output message="tns:getdateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getseekresult">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取查询结果</wsdl:documentation>
+      <wsdl:input message="tns:getseekresultSoapIn" />
+      <wsdl:output message="tns:getseekresultSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="mesinterlistSoap" type="tns:mesinterlistSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getfingucode">
+      <soap:operation soapAction="http://weblist.com/getfingucode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getcpdm">
+      <soap:operation soapAction="http://weblist.com/getcpdm" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getdate">
+      <soap:operation soapAction="http://weblist.com/getdate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getseekresult">
+      <soap:operation soapAction="http://weblist.com/getseekresult" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="mesinterlistSoap12" type="tns:mesinterlistSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getfingucode">
+      <soap12:operation soapAction="http://weblist.com/getfingucode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getcpdm">
+      <soap12:operation soapAction="http://weblist.com/getcpdm" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getdate">
+      <soap12:operation soapAction="http://weblist.com/getdate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getseekresult">
+      <soap12:operation soapAction="http://weblist.com/getseekresult" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="mesinterlist">
+    <wsdl:port name="mesinterlistSoap" binding="tns:mesinterlistSoap">
+      <soap:address location="http://192.168.23.6/mesinterlist.asmx" />
+    </wsdl:port>
+    <wsdl:port name="mesinterlistSoap12" binding="tns:mesinterlistSoap12">
+      <soap12:address location="http://192.168.23.6/mesinterlist.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
